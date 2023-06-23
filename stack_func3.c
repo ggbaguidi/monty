@@ -1,22 +1,22 @@
 #include "monty.h"
 
 /**
- * _pstr - mod top of stack y second top stack
+ * func_pstr - mod top of stack y second top stack
  * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * @nline: number of line opcode occurs on
  */
-void _pstr(stack_t **stack, unsigned int line_number)
+void func_pstr(stack_t **stack, unsigned int nline)
 {
 	stack_t *tmp = *stack;
 	int c = 0;
 
-	(void)line_number;
+	(void)nline;
 
 
 	while (tmp)
 	{
 		c = tmp->n;
-		if (c == 0 || _isalpha(c) == 0)
+		if (c == 0 || func_isalpha(c) == 0)
 			break;
 		putchar(c);
 		tmp = tmp->next;
@@ -25,55 +25,55 @@ void _pstr(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _rotl - mod top of stack y second top stack
+ * func_rotl - mod top of stack y second top stack
  * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * @nline: number of line opcode occurs on
  */
-void _rotl(stack_t **stack, unsigned int line_number)
+void func_rotl(stack_t **stack, unsigned int nline)
 {
-	stack_t *runner = *stack;
+	stack_t *current = *stack;
 
 
-	int aux1 = 0;
+	int var1 = 0;
 
-	if (!line_number || !stack || !*stack || !(*stack)->next)
+	if (!nline || !stack || !*stack || !(*stack)->next)
 		return;
 
-	aux1 = runner->n;
+	var1 = current->n;
 
-	while (runner->next)
+	while (current->next)
 	{
-		runner = runner->next;
-		runner->prev->n = runner->n;
+		current = current->next;
+		current->prev->n = current->n;
 	}
 
-	runner->n = aux1;
+	current->n = var1;
 }
 
 /**
- * _rotr - mod top of stack y second top stacks
+ * func_rotr - mod top of stack y second top stacks
  * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * @nline: number of line opcode occurs on
  */
-void _rotr(stack_t **stack, unsigned int line_number)
+void func_rotr(stack_t **stack, unsigned int nline)
 {
-	stack_t *runner = *stack;
+	stack_t *current = *stack;
 
-	int aux1 = 0;
+	int var1 = 0;
 
-	if (!line_number || !stack || !*stack || !(*stack)->next)
+	if (!nline || !stack || !*stack || !(*stack)->next)
 		return;
 
-	while (runner->next)
-		runner = runner->next;
+	while (current->next)
+		current = current->next;
 
-	aux1 = runner->n;
+	var1 = current->n;
 
-	while (runner->prev)
+	while (current->prev)
 	{
-		runner = runner->prev;
-		runner->next->n = runner->n;
+		current = current->prev;
+		current->next->n = current->n;
 	}
 
-	runner->n = aux1;
+	current->n = var1;
 }

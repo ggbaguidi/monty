@@ -55,21 +55,21 @@ instruct_func get_op_func(char *str)
 	int i;
 
 	instruction_t instruct[] = {
-		{"push", _push},
-		{"pall", _pall},
-		{"pint", _pint},
-		{"pop", _pop},
-		{"swap", _swap},
-		{"add", _add},
-		{"nop", _nop},
-		{"sub", _sub},
-		{"mul", _mul},
-		{"div", _div},
-		{"mod", _mod},
-		{"pchar", _pchar},
-		{"pstr", _pstr},
-		{"rotl", _rotl},
-		{"rotr", _rotr},
+		{"push", func_push},
+		{"pall", func_pall},
+		{"pint", func_pint},
+		{"pop", func_pop},
+		{"swap", func_swap},
+		{"add", func_add},
+		{"nop", func_nop},
+		{"sub", func_sub},
+		{"mul", func_mul},
+		{"div", func_div},
+		{"mod", func_mod},
+		{"pchar", func_pchar},
+		{"pstr", func_pstr},
+		{"rotl", func_rotl},
+		{"rotr", func_rotr},
 		{NULL, NULL},
 	};
 
@@ -112,10 +112,10 @@ int isnumber(char *str)
  * parse_line - parses a line for an opcode and arguments
  * @line: the line to be parsed
  * @stack: pointer to the head of the stack
- * @line_number: the current line number
+ * @nline: the current line number
  * Return: returns the opcode or null on failure
  */
-char *parse_line(char *line, stack_t **stack, unsigned int line_number)
+char *parse_line(char *line, stack_t **stack, unsigned int nline)
 {
 	char *op_code, *push, *arg;
 	(void)stack;
@@ -134,7 +134,7 @@ char *parse_line(char *line, stack_t **stack, unsigned int line_number)
 		}
 		else
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			fprintf(stderr, "L%d: usage: push integer\n", nline);
 			exit(EXIT_FAILURE);
 		}
 	}

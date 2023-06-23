@@ -1,18 +1,19 @@
 #include "monty.h"
 
+/*OWRN BY GUY AHONAKPON GBAGUIDI*/
 /**
- * _sub - sub top of stack y second top stack
+ * func_sub - sub top of stack y second top stack
  * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * @nline: number of line opcode occurs on
  */
-void _sub(stack_t **stack, unsigned int line_number)
+void func_sub(stack_t **stack, unsigned int nline)
 {
 	stack_t *tmp = *stack;
 	int sub = 0, i = 0;
 
 	if (tmp == NULL)
 	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't sub, stack too short\n", nline);
 		exit(EXIT_FAILURE);
 	}
 
@@ -24,27 +25,27 @@ void _sub(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || (*stack)->next == NULL || i <= 1)
 	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't sub, stack too short\n", nline);
 		exit(EXIT_FAILURE);
 	}
 	sub = (*stack)->next->n - (*stack)->n;
-	_pop(stack, line_number);
+	func_pop(stack, nline);
 
 	(*stack)->n = sub;
 }
 
 /**
- * _mul - mul top of stack y second top stack
+ * func_mul - mul top of stack y second top stack
  * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * @nline: number of line opcode occurs on
  */
-void _mul(stack_t **stack, unsigned int line_number)
+void func_mul(stack_t **stack, unsigned int nline)
 {
 	int aux;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't mul, stack too short\n", nline);
 		free(var_global.buffer);
 		fclose(var_global.file);
 		free_dlistint(*stack);
@@ -53,23 +54,23 @@ void _mul(stack_t **stack, unsigned int line_number)
 	else
 	{
 		aux = (*stack)->n;
-		_pop(stack, line_number);
+		func_pop(stack, nline);
 		(*stack)->n *= aux;
 	}
 }
 
 /**
- * _div - div top of stack y second top stack
+ * func_div - div top of stack y second top stack
  * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * @nline: number of line opcode occurs on
  */
-void _div(stack_t **stack, unsigned int line_number)
+void func_div(stack_t **stack, unsigned int nline)
 {
 	int div = 0;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't div, stack too short\n", nline);
 		free(var_global.buffer);
 		fclose(var_global.file);
 		free_dlistint(*stack);
@@ -77,7 +78,7 @@ void _div(stack_t **stack, unsigned int line_number)
 	}
 	else if ((*stack)->n == 0)
 	{
-		fprintf(stderr, "L%d: division by zero\n", line_number);
+		fprintf(stderr, "L%d: division by zero\n", nline);
 		free(var_global.buffer);
 		fclose(var_global.file);
 		free_dlistint(*stack);
@@ -86,23 +87,23 @@ void _div(stack_t **stack, unsigned int line_number)
 	else
 	{
 		div = (*stack)->n;
-		_pop(stack, line_number);
+		func_pop(stack, nline);
 		(*stack)->n /= div;
 	}
 }
 
 /**
- * _mod - mod top of stack y second top stack
+ * func_mod - mod top of stack y second top stack
  * @stack: pointer to lists for monty stack
- * @line_number: number of line opcode occurs on
+ * @nline: number of line opcode occurs on
  */
-void _mod(stack_t **stack, unsigned int line_number)
+void func_mod(stack_t **stack, unsigned int nline)
 {
 	int mod = 0;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't mod, stack too short\n", nline);
 		free(var_global.buffer);
 		fclose(var_global.file);
 		free_dlistint(*stack);
@@ -110,7 +111,7 @@ void _mod(stack_t **stack, unsigned int line_number)
 	}
 	else if ((*stack)->n == 0)
 	{
-		fprintf(stderr, "L%d: division by zero\n", line_number);
+		fprintf(stderr, "L%d: division by zero\n", nline);
 		free(var_global.buffer);
 		fclose(var_global.file);
 		free_dlistint(*stack);
@@ -119,7 +120,7 @@ void _mod(stack_t **stack, unsigned int line_number)
 	else
 	{
 		mod = (*stack)->n;
-		_pop(stack, line_number);
+		func_pop(stack, nline);
 		(*stack)->n %= mod;
 	}
 }
