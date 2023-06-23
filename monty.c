@@ -1,23 +1,24 @@
 #include "monty.h"
+/*GUY AHONAKPON GBAGUIDI*/
 global_var var_global;
 /**
  * main - driver function for monty program
- * @ac: int num of arguments
- * @av: opcode file
+ * @var_argc: int num of arguments
+ * @var_argv: opcode file
  * Return: 0
  */
-int main(int ac, char **av)
+int main(int var_argc, char **var_argv)
 {
 	stack_t *stack;
 
 	stack = NULL;
-	if (ac != 2)
+	if (var_argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
-	read_file(av[1], &stack);
+	read_file(var_argv[1], &stack);
     /* recordar liberar memorias */
 	free_dlistint(stack);
 	return (0);

@@ -6,7 +6,7 @@
  * @stack: linked lists for monty stack
  * @nline: number of line opcode occurs on
  */
-void func_push(stack_t **stack,__attribute__ ((unused))unsigned int nline)
+void func_push(stack_t **stack, __attribute__ ((unused))unsigned int nline)
 {
 	stack_t *s_top;
 	(void)nline;
@@ -31,7 +31,7 @@ void func_push(stack_t **stack,__attribute__ ((unused))unsigned int nline)
  * @stack: pointer to linked list stack
  * @nline: number of line opcode occurs on
  */
-void func_pall(stack_t **stack,__attribute__ ((unused))unsigned int nline)
+void func_pall(stack_t **stack, __attribute__ ((unused))unsigned int nline)
 {
 	stack_t *current;
 
